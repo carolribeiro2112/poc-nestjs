@@ -17,16 +17,18 @@ export class CoursesService {
   }
 
   findOne(id: string) {
-    const courseExists = this.courses.find(
+    const course = this.courses.find(
       (course: Course) => course.id === Number(id),
     );
 
-    if (!courseExists) {
+    if (!course) {
       throw new HttpException(
         `Course id ${id} not found`,
         HttpStatus.NOT_FOUND,
       );
     }
+
+    return course;
   }
 
   create(createCourseDto: any) {
